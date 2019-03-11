@@ -10,15 +10,13 @@ export const GET_TODOS_ERROR = '[Todo] GET_TODOS_ERROR'
 
 const axios = require('axios');
 
-
-
-
 export function CreateTodo(todo){
-    return (dispatch, getState) => {
+    console.log(todo);
+    return (dispatch, getState,todo) => {
         return axios({
               url: constList.ApiUrl,
               method: 'POST',
-              todo,
+              body:todo,
               headers: {
                 'Accept':'application/json',
                 'Content-Type': 'application/json'

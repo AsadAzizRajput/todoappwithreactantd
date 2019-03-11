@@ -31,33 +31,11 @@ const axios = require('axios');
           completed:false
         }
         dispatch(CreateTodo(data))
-          // axios({
-          //   url: 'http://todo-backend-rails.herokuapp.com',
-          //   method: 'POST',
-          //   data,
-          //   headers: {
-          //     'Accept':'application/json',
-          //     'Content-Type': 'application/json'
-          // }
-          // }).then((response) => {
-          //   if(response.data){
-          //     message.success("Added Successfully");
-          //     this.props.history.replace('/')
-          //   }
-          //   else{
-          //     message.error("Error Adding Todos");
-          //   }
-          //   console.log(response.data);
-            
-          // }).catch((error)=>{
-          //       console.log(error);
-          // })
       }
     });
   }
 
   render() {
-    
     const { getFieldDecorator } = this.props.form;
     return (
       <div >     
@@ -65,7 +43,6 @@ const axios = require('axios');
       <Header>Add Todos </Header>
       <Content> 
       <Form onSubmit={this.handleSubmit} className="layoutForm">
-        
           <FormItem>
             {getFieldDecorator('name', {
               rules: [{ required: true, message:'' }],

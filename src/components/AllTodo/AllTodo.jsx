@@ -19,11 +19,14 @@ class AllTodo extends React.Component {
   componentDidMount(){
       const { GetTodos } = this.props;
       GetTodos();
+      console.log(this.props);
     }
   
   
  
   render() {
+    const {todos} = this.props;
+    console.log(todos);
     return (
       <div >     
       <Layout>
@@ -31,7 +34,7 @@ class AllTodo extends React.Component {
       <Content> 
     <List
       bordered
-      dataSource={this.state.AllTodos}
+      dataSource={todos}
       renderItem={(item,index) => (<List.Item key={index}>{item.title}
              />
       </List.Item>)}  
