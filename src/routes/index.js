@@ -7,6 +7,7 @@ import {
 
 import AddTodo from '../components/AddTodo'
 import AllTodo from '../components/AllTodo';
+import EditTodo from '../components/EditTodo';
 
 
 
@@ -15,6 +16,8 @@ const Routers = () => (
 		<Switch>
 			<Route exact path="/" component={AllTodo} />	
 			<Route exact path="/addtodo" component={AddTodo} />
+			<Route exact path="/edittodo/:id" component={EditTodo} />
+
         </Switch>
 	</Router>
 );

@@ -1,7 +1,14 @@
 import React from 'react';
-import { message,Layout,List,Icon  } from 'antd';
+import {
+  message,
+  Layout,
+  List,
+  Icon,
+  Col,
+  Row,
+  Button
+} from 'antd';
 import {withRouter,Link } from "react-router-dom";
-
 
 import './AllTodo.css';
 
@@ -13,17 +20,19 @@ class AllTodo extends React.Component {
   constructor(props) {
     super(props);
     this.state={AllTodos:[]}
-    console.log(this.props);
+    this.delete = this.handleDelete.bind(this);
+    this.handleNavigateToEdit = this.handleNavigateToEdit.bind(this);
   }
 
   componentDidMount(){
       const { GetTodos } = this.props;
       GetTodos();
-      console.log(this.props);
     }
-  
-  
- 
+    handleDelete(todoId){
+      const {DeleteTodo,history} = this.props
+      DeleteTodo(todoId.id,history)
+     
+    }
   render() {
     const {todos} = this.props;
     console.log(todos);
@@ -35,8 +44,20 @@ class AllTodo extends React.Component {
     <List
       bordered
       dataSource={todos}
-      renderItem={(item,index) => (<List.Item key={index}>{item.title}
-             />
+      renderItem={(item,index) => (
+        <List.Item key={index}>   
+
+        <Row>
+          <Col span={18}>
+          <Link to={`/edittodo/${item.id}`}>{item.title}</Link>
+          </Col>
+           <Col span={6}>
+          </Col> 
+          <Col span={6}>
+          <Button type="danger"  onClick={this.handleDelete.bind(this, item)} >Delete</Button>
+          </Col>
+        </Row> 
+             
       </List.Item>)}  
     /></Content>
     </Layout>

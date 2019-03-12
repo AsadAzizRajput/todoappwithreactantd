@@ -1,55 +1,52 @@
 import React from 'react';
-import { message,Layout,Form,Input,Button  } from 'antd';
-import {withRouter} from "react-router-dom";
-import { CreateTodo } from '../../redux/actions'
-import './AddTodo.css';
-import {constList} from '../../constants/API_URL'
+import {withRouter,Link } from "react-router-dom";
+import { message,Layout,List,Form,Input,Icon,Button  } from 'antd';
+
 const {
   Header, Content,
 } = Layout;
+const FormItem = Form.Item;
 
-const FormItem = Form.Item
-const axios = require('axios');
-
-
- class AddTodo extends React.Component {
+ class edittodo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+  }
+  componentDidMount(){
+    const { GetTodoById,match } = this.props;
+    GetTodoById(match.params.id);  
   }
 
-  
   handleSubmit = (e) => {
     e.preventDefault();
-    const {dispatch ,history,CreateTodo} = this.props
-    console.log(history);
+    const {dispatch ,history,UpdateTodoById,todos} = this.props
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        let todo = {
-          "title":values.name,
-          "order":values.order,
-          "completed":false
-        }     
-          CreateTodo(todo,history)
+        let data = {
+          id:todos.id,  
+          title:values.name,
+          order:values.order,
+          completed:true
+        }
+        UpdateTodoById(data,history);
+
       }
     });
   }
-
-
-
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {todo} = this.props;
-    console.log(todo);
+    const {todos} =this.props;
+    console.log(todos);
     return (
-      <div >     
+      <div >
       <Layout>
-      <Header>Add Todos </Header>
+      <Header> 
+      Add Todos</Header>
       <Content> 
-      <Form onSubmit={this.handleSubmit} className="layoutForm">
+      <Form onSubmit={this.handleSubmit}>
           <FormItem>
             {getFieldDecorator('name', {
               rules: [{ required: true, message:'' }],
+            initialValue:todos.title
             })(
               <Input  type="text" placeholder='Type Todo...' />
             )}
@@ -57,13 +54,14 @@ const axios = require('axios');
           <FormItem>
             {getFieldDecorator('order', {
               rules: [{ required: true, message:'' }],
+             initialValue:todos.order
             })(
               <Input  type="text" placeholder='Type order...' />
             )}
           </FormItem>
           <FormItem>
           <Button type="primary" htmlType="submit" className="signup-form-button">
-             Add
+             Update
           </Button>
           </FormItem>
        </Form>  
@@ -75,9 +73,5 @@ const axios = require('axios');
 }
 
 
-
-const WrappedForm = Form.create()(AddTodo);
-
-export default withRouter(WrappedForm);
-
+export default edittodo = Form.create()(edittodo);
 
