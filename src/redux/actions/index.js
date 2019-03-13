@@ -1,4 +1,4 @@
-import {constList} from '../../constants/API_URL'
+import {Const} from '../../constants/Const.js'
 export const CREATE_TODO = '[Todo] CREATE_TODO'; 
 export const CREATE_TODO_SUCCESS = '[Todo] CREATE_TODO_SUCCESS'; 
 export const CREATE_TODO_ERROR = '[Todo] CREATE_TODO_ERROR'; 
@@ -19,7 +19,7 @@ const axios = require('axios');
 export const CreateTodo = (todo,history) => (dispatch) => {
     axios({
         method: 'POST',
-        url: constList.ApiUrl,
+        url: Const.ApiUrl,
         data:JSON.stringify(todo),
         headers: {
           'Accept':'application/json',
@@ -38,7 +38,7 @@ export const DeleteTodo = (todoId,history) => (dispatch) => {
   console.log(todoId);
   axios({
       method: 'DELETE',
-      url: constList.ApiUrl+todoId,
+      url: Const.ApiUrl+todoId,
       headers: {
         'Accept':'application/json',
         'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ export const DeleteTodo = (todoId,history) => (dispatch) => {
 
 export const GetTodos = () => (dispatch) => {
   axios({
-    url: constList.ApiUrl,
+    url: Const.ApiUrl,
     method: 'GET',
     headers: {
       'Accept':'application/json',
@@ -76,7 +76,7 @@ export const GetTodos = () => (dispatch) => {
 
 export const GetTodoById =(todoId)=>(dispatch)=>{
   axios({
-    url: constList.ApiUrl+todoId,
+    url: Const.ApiUrl+todoId,
     method: 'GET',
     headers: {
       'Accept':'application/json',
@@ -93,7 +93,7 @@ export const GetTodoById =(todoId)=>(dispatch)=>{
 export const UpdateTodoById =(todo,history)=>(dispatch)=>{
   axios({
     method: 'PATCH',
-    url: constList.ApiUrl+todo.id,
+    url: Const.ApiUrl+todo.id,
     data:JSON.stringify(todo),
     headers: {
       'Accept':'application/json',
@@ -103,7 +103,6 @@ export const UpdateTodoById =(todo,history)=>(dispatch)=>{
     let todoData = res.data;
     dispatch({type:UPDATE_TODOBYID_SUCCESS,updatedTodo:todoData})
     history.replace('/');
-    //window.location.reload();
   }).catch((error)=>{
         console.log(error);
   }) 

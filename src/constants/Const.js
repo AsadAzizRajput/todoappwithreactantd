@@ -1,6 +1,6 @@
 let ApiUrl = 'http://todo-backend-rails.herokuapp.com/';
 
-let constList ={
+let Const = {
     ApiUrl
 }
-export {constList};
+export {Const};
