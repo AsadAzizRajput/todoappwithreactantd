@@ -3,7 +3,6 @@ import { message,Layout,Form,Input,Button  } from 'antd';
 import {withRouter} from "react-router-dom";
 import { CreateTodo } from '../../redux/actions'
 import './AddTodo.css';
-import {constList} from '../../constants/API_URL'
 const {
   Header, Content,
 } = Layout;

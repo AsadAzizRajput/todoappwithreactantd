@@ -21,7 +21,7 @@ class AllTodo extends React.Component {
     super(props);
     this.state={AllTodos:[]}
     this.delete = this.handleDelete.bind(this);
-    this.handleNavigateToEdit = this.handleNavigateToEdit.bind(this);
+   
   }
 
   componentDidMount(){
