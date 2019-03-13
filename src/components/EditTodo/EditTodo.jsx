@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter,Link } from "react-router-dom";
+import {withRouter,Link,Redirect } from "react-router-dom";
 import { message,Layout,List,Form,Input,Icon,Button  } from 'antd';
 
 const {
@@ -14,6 +14,11 @@ const FormItem = Form.Item;
   componentDidMount(){
     const { GetTodoById,match } = this.props;
     GetTodoById(match.params.id);  
+  }
+  handleLogout(){
+    localStorage.clear();
+    this.props.history.push('/')
+    window.location.reload()
   }
 
   handleSubmit = (e) => {
@@ -35,12 +40,15 @@ const FormItem = Form.Item;
   render() {
     const { getFieldDecorator } = this.props.form;
     const {todos} =this.props;
-    console.log(todos);
+    
+    if (localStorage.getItem('accessToken')) {
     return (
       <div >
       <Layout>
       <Header> 
-      Add Todos</Header>
+      Add Todos
+      <Button className="btn-logout" type="primary" onClick={this.handleLogout.bind(this)}>Primary</Button>
+      </Header>
       <Content> 
       <Form onSubmit={this.handleSubmit}>
           <FormItem>
@@ -69,6 +77,17 @@ const FormItem = Form.Item;
     </Layout>
       </div>
     );
+    }
+    else{
+      return (
+        <Redirect
+          to={{
+            pathname: "/"
+          }}
+        />
+      )
+      }
+
   }
 }
 

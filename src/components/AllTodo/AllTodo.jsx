@@ -21,25 +21,26 @@ class AllTodo extends React.Component {
     super(props);
     this.state={AllTodos:[]}
     this.delete = this.handleDelete.bind(this);
+    const { GetTodos } = this.props;
+    GetTodos();
    
   }
 
-  componentDidMount(){
-      const { GetTodos } = this.props;
-      GetTodos();
-    }
     handleDelete(todoId){
       const {DeleteTodo,history} = this.props
       DeleteTodo(todoId.id,history)
-     
     }
+  
   render() {
     const {todos} = this.props;
     console.log(todos);
+    
     return (
       <div >     
       <Layout>
-      <Header>All Todos <span className="add-todo-btn"><Link to="/addtodo">+</Link></span></Header>
+      <Header>All Todos <span className="add-todo-btn"><Link to="/addtodo">+</Link></span>
+   
+      </Header>
       <Content> 
     <List
       bordered

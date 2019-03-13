@@ -1,0 +1,83 @@
+
+@media only screen and (max-width: 600px) {
+  .login-form{
+    width:100%;
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #eeeeee;
+    border: 1px solid #e1ecf6 !important;
+    padding: 11px;
+    
+ }
+ 
+ .login-header{
+  height: 70px !important;
+  line-height: 64px !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 33px !important;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  /* background-color: #025b5b !important; */
+  background-color: #05237a;
+  padding: 0 8% !important;
+}
+} 
+
+@media only screen and (min-width: 992px) {
+  .login-form{
+    width:25%;
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #eeeeee;
+    border: 1px solid #e1ecf6 !important;
+    padding: 11px;
+    
+ }
+ .login-header{
+  height: 70px !important;
+  line-height: 64px !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  font-size: 33px !important;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  /* background-color: #025b5b !important; */
+  background-color: #05237a;
+  padding: 0 8% !important;
+}
+} 
+
+
+
+ .login-form-forgot {
+    float: right !important;
+  }
+  .login-form-button {
+    width: 100% ;
+  
+  }
+
+  #components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    float: right !important;
+  }
+  #components-form-demo-normal-login .login-form-button {
+    width: 100% ;
+    color: green !important;
+  }
+
+ 
+
+  .loginbtn{
+    background-color: #05237a !important;
+    border-color: #00185c !important;
+  }

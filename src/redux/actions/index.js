@@ -46,7 +46,7 @@ export const DeleteTodo = (todoId,history) => (dispatch) => {
     })
     .then((response) => {
       dispatch({ type: DELETE_TODO_SUCCESS});
-     history.push('/');
+     history.push('/alltodo');
      window.location.reload();
       console.log(Window)
     }).catch((error)=>{
@@ -101,7 +101,7 @@ export const UpdateTodoById =(todo,history)=>(dispatch)=>{
   }).then((res) => {
     let todoData = res.data;
     dispatch({type:UPDATE_TODOBYID_SUCCESS,updatedTodo:todoData})
-    history.replace('/');
+   // history.push('/alltodo');
   }).catch((error)=>{
         console.log(error);
   }) 

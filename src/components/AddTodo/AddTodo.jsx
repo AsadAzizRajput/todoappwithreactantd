@@ -1,6 +1,9 @@
 import React from 'react';
 import { message,Layout,Form,Input,Button  } from 'antd';
-import {withRouter} from "react-router-dom";
+import {
+  withRouter,
+  Redirect
+} from "react-router-dom";
 import { CreateTodo } from '../../redux/actions'
 import './AddTodo.css';
 const {
@@ -33,44 +36,62 @@ const axios = require('axios');
       }
     });
   }
-
+  handleLogout(){
+    localStorage.clear();
+    this.props.history.push('/')
+    window.location.reload()
+  }
 
 
   render() {
     const { getFieldDecorator } = this.props.form;
     const {todo} = this.props;
     console.log(todo);
-    return (
-      <div >     
-      <Layout>
-      <Header>Add Todos </Header>
-      <Content> 
-      <Form onSubmit={this.handleSubmit} className="layoutForm">
-          <FormItem>
-            {getFieldDecorator('name', {
-              rules: [{ required: true, message:'' }],
-            })(
-              <Input  type="text" placeholder='Type Todo...' />
-            )}
-          </FormItem>
-          <FormItem>
-            {getFieldDecorator('order', {
-              rules: [{ required: true, message:'' }],
-            })(
-              <Input  type="text" placeholder='Type order...' />
-            )}
-          </FormItem>
-          <FormItem>
-          <Button type="primary" htmlType="submit" className="signup-form-button">
-             Add
-          </Button>
-          </FormItem>
-       </Form>  
-    </Content>
-    </Layout>
-      </div>
-    );
+
+    if (localStorage.getItem('accessToken')) {
+      return (
+        <div >     
+        <Layout>
+        <Header>Add Todos
+        <Button className="btn-logout" type="primary" onClick={this.handleLogout.bind(this)}>Primary</Button>
+           </Header>
+        <Content> 
+        <Form onSubmit={this.handleSubmit} className="layoutForm">
+            <FormItem>
+              {getFieldDecorator('name', {
+                rules: [{ required: true, message:'' }],
+              })(
+                <Input  type="text" id="name" placeholder='Type Todo...' />
+              )}
+            </FormItem>
+            <FormItem>
+              {getFieldDecorator('order', {
+                rules: [{ required: true, message:'' }],
+              })(
+                <Input  type="text" id="order" placeholder='Type order...' />
+              )}
+            </FormItem>
+            <FormItem>
+            <Button type="primary" htmlType="submit" className="signup-form-button">
+               Add
+            </Button>
+            </FormItem>
+         </Form>  
+      </Content>
+      </Layout>
+        </div>
+      );
+    }
+ else{
+  return (
+    <Redirect
+      to={{
+        pathname: "/"
+      }}
+    />
+  )
   }
+}
 }
 
 

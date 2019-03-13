@@ -8,15 +8,17 @@ import {
 import AddTodo from '../components/AddTodo'
 import AllTodo from '../components/AllTodo';
 import EditTodo from '../components/EditTodo';
+import Login 	from './../scenes/Login';
 
 
 
 const Routers = () => (
 	<Router>
 		<Switch>
-			<Route exact path="/" component={AllTodo} />	
-			<Route exact path="/addtodo" component={AddTodo} />
-			<Route exact path="/edittodo/:id" component={EditTodo} />
+			<Route exact path="/" component={Login} />	
+			<Route  path="/alltodo" component={AllTodo} />	
+			<Route  path="/addtodo" component={AddTodo} />
+			<Route  path="/edittodo/:id" component={EditTodo} />
 
         </Switch>
 	</Router>
